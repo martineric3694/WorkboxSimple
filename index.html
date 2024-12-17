@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <title>Simple Workbox PWA</title>
+
+    <!-- Manifest untuk mendukung PWA -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="icon.png" type="image/png">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Simple Workbox Implementation</h1>
+        <p>Demonstrasi implementasi Workbox dengan berbagai cache strategy</p>
+    </header>
+
+    <!-- Konten Utama -->
+    <main>
+        <section>
+            <h2>Cache Strategies</h2>
+            <ul>
+                <li><strong>Cache First:</strong> Gambar akan di-cache dan diambil dari cache lebih dahulu.</li>
+                <li><strong>Stale While Revalidate:</strong> File CSS dan JS akan langsung diambil dari cache, lalu
+                    diperbarui.</li>
+                <li><strong>Network First:</strong> API JSON akan diambil dari jaringan terlebih dahulu.</li>
+                <li><strong>Network Only:</strong> Semua request lain hanya menggunakan jaringan.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contoh Gambar</h2>
+            <img src="sample.png" alt="Contoh Gambar" width="300" height="200">
+        </section>
+
+        <section>
+            <h2>Contoh API</h2>
+            <button id="fetchData">Ambil Data JSON</button>
+            <pre id="apiOutput">Klik tombol untuk mengambil data dari API</pre>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Simple Workbox PWA</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered ', registration);
+                })
+                .catch((error) => {
+                    console.log('Service Worker registration failed ', error);
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>
